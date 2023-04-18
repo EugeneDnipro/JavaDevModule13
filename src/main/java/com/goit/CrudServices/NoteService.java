@@ -7,9 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static com.goit.JavaDevModule13Application.notesStorage;
+
 @Service
 public class NoteService {
-    Map<Long, Note> notesStorage = new HashMap<>();
 
     public Map<Long, Note> listAll() {
         return notesStorage;
@@ -18,7 +19,7 @@ public class NoteService {
     public Note add(Note note) {
         Random random = new Random();
         //note.setId(random.nextLong(1L, Long.MAX_VALUE));
-        note.setId(random.nextLong(1L, 5L));
+        note.setId(random.nextLong(1L, 5000L));
         notesStorage.put(note.getId(), note);
         return note;
     }
@@ -29,19 +30,19 @@ public class NoteService {
         }
         notesStorage.remove(id);
     }
-
-    public void update(Note note) {
-        if (notesStorage.get(note.getId()) == null) {
-            throw new IllegalArgumentException("There is not any note to UPDATE with such ID");
-        }
-        notesStorage.replace(note.getId(), note);
-    }
-
-    public Note getById(long id) {
-        if (notesStorage.get(id) == null) {
-            throw new IllegalArgumentException("There is not any note to GET with such ID");
-        }
-        return notesStorage.get(id);
-    }
+//
+//    public void update(Note note) {
+//        if (notesStorage.get(note.getId()) == null) {
+//            throw new IllegalArgumentException("There is not any note to UPDATE with such ID");
+//        }
+//        notesStorage.replace(note.getId(), note);
+//    }
+//
+//    public Note getById(long id) {
+//        if (notesStorage.get(id) == null) {
+//            throw new IllegalArgumentException("There is not any note to GET with such ID");
+//        }
+//        return notesStorage.get(id);
+//    }
 
 }
