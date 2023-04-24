@@ -13,7 +13,6 @@
         <tr>
             <th>Title</th>
             <th>Content</th>
-            <th>ID</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -21,22 +20,19 @@
         <tr th:each="note : ${notes}">
             <td th:text="${note.title}"></td>
             <td th:text="${note.content}"></td>
-            <td th:text="${note.id}"></td>
             <td>
                 <form method="get" th:action="@{/note/edit(id=${note.id})}">
+                    <input type="hidden" name="id" th:value="${note.id}"/>
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
                 <form method="post" th:action="@{/note/delete}">
-                    <input type="hidden" name="id" th:value="${note.id}" />
+                    <input type="hidden" name="id" th:value="${note.id}"/>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         </tbody>
     </table>
-    <form method="get" th:action="@{/note/edit}">
-        <button type="submit" class="btn btn-success">Create New Note</button>
-    </form>
 </div>
 </body>
 </html>

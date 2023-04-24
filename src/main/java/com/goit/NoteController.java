@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import static com.goit.JavaDevModule13Application.notesStorage;
-
 @Controller
 @RequestMapping("/note")
 public class NoteController {
@@ -23,18 +21,24 @@ public class NoteController {
 
     @PostMapping("/delete")
     public String noteDelete(@RequestParam(name = "id") long id) {
-        //ModelAndView result = new ModelAndView("note/delete");
-        System.out.println("id = " + id);
         noteService.deleteById(id);
-        return "redirect:/note/delete";
-        //return "/note/delete";
+        return "redirect:/note/list";
     }
 
-//    @PostMapping("/delete")
-//    public String deleteNote(@RequestParam("id") long id, Model model) {
-//        Note note = notesStorage.get(id);
-//        model.addAttribute("note", note);
-//        return "delete";
-//    }
+    @GetMapping("/edit")
+    public String edit(@RequestParam(name = "id") long id, Model model) {
+        Note note = noteService.getById(id);
+        model.addAttribute("note", note);
+        System.out.println("EditGET = " + id);
+        return "note/edit";
+    }
 
+    @PostMapping("/edit")
+    public String save(@ModelAttribute Note note) {
+        Note existingNote = noteService.getById(note.getId());
+        existingNote.setTitle(note.getTitle());
+        existingNote.setContent(note.getContent());
+        System.out.println("EditPOST");
+        return "redirect:/note/list";
+    }
 }
