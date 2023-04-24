@@ -29,7 +29,6 @@ public class NoteController {
     public String edit(@RequestParam(name = "id") long id, Model model) {
         Note note = noteService.getById(id);
         model.addAttribute("note", note);
-        System.out.println("EditGET = " + id);
         return "note/edit";
     }
 
@@ -38,7 +37,6 @@ public class NoteController {
         Note existingNote = noteService.getById(note.getId());
         existingNote.setTitle(note.getTitle());
         existingNote.setContent(note.getContent());
-        System.out.println("EditPOST");
         return "redirect:/note/list";
     }
 }
