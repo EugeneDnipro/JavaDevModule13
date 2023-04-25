@@ -23,18 +23,6 @@ public class JavaDevModule13Application {
         }
 
         SpringApplication.run(JavaDevModule13Application.class, args);
-
-
-//		System.out.println("noteService.listAll() = " + noteService.listAll());
-//		noteService.deleteById(3L);
-//		System.out.println("noteService.listAll() = " + noteService.listAll());
-//		Note noteA = new Note();
-//		noteA.setId(2);
-//		noteA.setTitle("Title A");
-//		noteA.setContent("My A note");
-//		noteService.update(noteA);
-//		System.out.println("noteService.listAll() = " + noteService.listAll());
-//		System.out.println("noteService.getById(2L) = " + noteService.getById(2L));
     }
 
 }

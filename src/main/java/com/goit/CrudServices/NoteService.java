@@ -3,7 +3,6 @@ package com.goit.CrudServices;
 import com.goit.Entities.Note;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 

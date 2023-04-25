@@ -10,12 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/note")
 public class NoteController {
+
     NoteService noteService = new NoteService();
 
     @GetMapping("/list")
     public ModelAndView list() {
         ModelAndView result = new ModelAndView("note/list");
         result.addObject("notes", noteService.listAll().values());
+        result.addObject("note", new Note());
         return result;
     }
 
@@ -34,9 +36,14 @@ public class NoteController {
 
     @PostMapping("/edit")
     public String save(@ModelAttribute Note note) {
-        Note existingNote = noteService.getById(note.getId());
-        existingNote.setTitle(note.getTitle());
-        existingNote.setContent(note.getContent());
+        noteService.update(note);
+        return "redirect:/note/list";
+    }
+
+    @PostMapping("/new")
+    public String newNote(@ModelAttribute Note note, Model model) {
+        model.addAttribute("note", note);
+        noteService.add(note);
         return "redirect:/note/list";
     }
 }
